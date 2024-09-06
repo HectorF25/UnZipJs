@@ -1,0 +1,41 @@
+{
+  "name": "unzipjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs",
+    "test": "node test/spec/unzipjs.js",
+    "pretest": "npm run build"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HectorF25/UnZipJs.git"
+  },
+  "keywords": [
+    "Zip"
+  ],
+  "author": "Hector Jesid Florez Macias",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HectorF25/UnZipJs/issues"
+  },
+  "homepage": "https://github.com/HectorF25/UnZipJs#readme",
+  "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-sucrase": "^5.0.2",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.21.2",
+    "tslib": "^2.7.0",
+    "typescript": "^5.5.4"
+  },
+  "files": [
+    "dist",
+    "libraries",
+    "test"
+  ]
+}
