@@ -22,10 +22,7 @@ export class UnZipJs {
 
     constructor(ArrayBuffer: ArrayBuffer) {
         this.dataview = new DataView(ArrayBuffer);
-    }
-
-    public async loadAsyncUnzip(): Promise<void> {
-        await this.read();
+        this.read();
     }
 
     private async extractZip(entry: localFiles): Promise<Blob> {
