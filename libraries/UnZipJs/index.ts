@@ -1,7 +1,7 @@
 import { localFiles, centralDirectories, endCentralDirectory } from './interface/index';
 import { bufferToStream, streamToBlob, readString, msdosTimeToDate } from '../utils/index';
 
-export class Zip {
+export class UnZipJs {
     /** 
      * @param {ArrayBuffer} buffer
      * @returns {Promise<void>}
