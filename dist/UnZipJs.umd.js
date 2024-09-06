@@ -83,11 +83,7 @@
             this.centralDirectories = [];
             this.endOfCentralDirectory = null;
             this.dataview = new DataView(ArrayBuffer);
-        }
-        loadAsyncUnzip() {
-            return __awaiter(this, void 0, void 0, function* () {
-                yield this.read();
-            });
+            this.read();
         }
         extractZip(entry) {
             return __awaiter(this, void 0, void 0, function* () {
