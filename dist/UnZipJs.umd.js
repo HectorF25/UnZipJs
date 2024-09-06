@@ -76,7 +76,7 @@
         });
     }
 
-    class Zip {
+    class UnZipJs {
         constructor(ArrayBuffer) {
             this.globalIndex = 0;
             this.localFiles = [];
@@ -220,6 +220,6 @@
         ;
     }
 
-    exports.Zip = Zip;
+    exports.UnZipJs = UnZipJs;
 
 }));
