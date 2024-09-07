@@ -111,6 +111,12 @@
             __classPrivateFieldSet(this, _UnZipJs_dataview, new DataView(ArrayBuffer), "f");
             this.read();
         }
+        loadAsync() {
+            return __awaiter(this, void 0, void 0, function* () {
+                return yield this.read();
+            });
+        }
+        ;
         extractZip(entry) {
             return __awaiter(this, void 0, void 0, function* () {
                 const buffer = __classPrivateFieldGet(this, _UnZipJs_dataview, "f").buffer.slice(entry.startsAt, entry.startsAt + entry.compressedSize);
