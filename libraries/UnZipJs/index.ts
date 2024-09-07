@@ -44,7 +44,7 @@ export class UnZipJs {
         try {
             let indexList: Array<number> = [];
             while(!this.#endOfCentralDirectory){
-                const signature = this.#dataview.getUint32(this.#globalIndex);
+                const signature = this.#dataview.getUint32(this.#globalIndex, true);
                 if(signature === 0x04034b50){
                     const entry = this.readLocalFiles(this.#globalIndex);
                     entry.startsAt = this.#globalIndex + 30 + entry.fileNameLength + entry.extraLength;
