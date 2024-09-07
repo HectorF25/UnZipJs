@@ -25,10 +25,6 @@ export class UnZipJs {
         this.read();
     }
 
-    async loadAsync(): Promise<void> {
-        return await this.read();
-    };
-
     public async extractZip(entry: localFiles): Promise<Blob> {
         const buffer: ArrayBuffer = this.#dataview.buffer.slice(entry.startsAt, entry.startsAt + entry.compressedSize);
         if(entry.compressionMethod === 0x00){
@@ -43,7 +39,7 @@ export class UnZipJs {
         }
     };
 
-    async read(): Promise<void> {
+    read(): void {
         try {
             let indexList: Array<number> = [];
             while(!this.#endOfCentralDirectory){
