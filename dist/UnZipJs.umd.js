@@ -134,7 +134,7 @@
             try {
                 let indexList = [];
                 while (!__classPrivateFieldGet(this, _UnZipJs_endOfCentralDirectory, "f")) {
-                    const signature = __classPrivateFieldGet(this, _UnZipJs_dataview, "f").getUint32(__classPrivateFieldGet(this, _UnZipJs_globalIndex, "f"));
+                    const signature = __classPrivateFieldGet(this, _UnZipJs_dataview, "f").getUint32(__classPrivateFieldGet(this, _UnZipJs_globalIndex, "f"), true);
                     if (signature === 0x04034b50) {
                         const entry = this.readLocalFiles(__classPrivateFieldGet(this, _UnZipJs_globalIndex, "f"));
                         entry.startsAt = __classPrivateFieldGet(this, _UnZipJs_globalIndex, "f") + 30 + entry.fileNameLength + entry.extraLength;
