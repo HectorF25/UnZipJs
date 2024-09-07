@@ -15,6 +15,7 @@ export class UnZipJs {
     */
 
     #dataview: DataView;
+    #indexLocal = 0;
     #globalIndex: number = 0;
     #localFiles: Array<localFiles> = [];
     #centralDirectories: Array<centralDirectories> = []; 
@@ -49,10 +50,11 @@ export class UnZipJs {
                     entry.startsAt = this.#globalIndex + 30 + entry.fileNameLength + entry.extraLength;
                     entry.extract = this.extractZip.bind(this, entry);
                     this.#localFiles.push(entry);
-                    indexList.push(this.#globalIndex);
+                    this.#indexLocal = entry.startsAt + entry.compressedSize;
+                    indexList.push(this.#indexLocal);
                     this.#globalIndex = 0;
-                    for(const index of indexList){
-                        if(index === indexList.length - 1) {
+                    for(const index in indexList){
+                        if(Number(index) === Number(indexList.length - 1)){
                             this.#globalIndex += indexList[index];
                         }
                     }

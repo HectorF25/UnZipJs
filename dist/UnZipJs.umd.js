@@ -89,7 +89,7 @@
         });
     }
 
-    var _UnZipJs_dataview, _UnZipJs_globalIndex, _UnZipJs_localFiles, _UnZipJs_centralDirectories, _UnZipJs_endOfCentralDirectory;
+    var _UnZipJs_dataview, _UnZipJs_indexLocal, _UnZipJs_globalIndex, _UnZipJs_localFiles, _UnZipJs_centralDirectories, _UnZipJs_endOfCentralDirectory;
     class UnZipJs {
         constructor(ArrayBuffer) {
             /**
@@ -104,6 +104,7 @@
              * });
             */
             _UnZipJs_dataview.set(this, void 0);
+            _UnZipJs_indexLocal.set(this, 0);
             _UnZipJs_globalIndex.set(this, 0);
             _UnZipJs_localFiles.set(this, []);
             _UnZipJs_centralDirectories.set(this, []);
@@ -139,10 +140,11 @@
                         entry.startsAt = __classPrivateFieldGet(this, _UnZipJs_globalIndex, "f") + 30 + entry.fileNameLength + entry.extraLength;
                         entry.extract = this.extractZip.bind(this, entry);
                         __classPrivateFieldGet(this, _UnZipJs_localFiles, "f").push(entry);
-                        indexList.push(__classPrivateFieldGet(this, _UnZipJs_globalIndex, "f"));
+                        __classPrivateFieldSet(this, _UnZipJs_indexLocal, entry.startsAt + entry.compressedSize, "f");
+                        indexList.push(__classPrivateFieldGet(this, _UnZipJs_indexLocal, "f"));
                         __classPrivateFieldSet(this, _UnZipJs_globalIndex, 0, "f");
-                        for (const index of indexList) {
-                            if (index === indexList.length - 1) {
+                        for (const index in indexList) {
+                            if (Number(index) === Number(indexList.length - 1)) {
                                 __classPrivateFieldSet(this, _UnZipJs_globalIndex, __classPrivateFieldGet(this, _UnZipJs_globalIndex, "f") + indexList[index], "f");
                             }
                         }
@@ -239,7 +241,7 @@
         }
         ;
     }
-    _UnZipJs_dataview = new WeakMap(), _UnZipJs_globalIndex = new WeakMap(), _UnZipJs_localFiles = new WeakMap(), _UnZipJs_centralDirectories = new WeakMap(), _UnZipJs_endOfCentralDirectory = new WeakMap();
+    _UnZipJs_dataview = new WeakMap(), _UnZipJs_indexLocal = new WeakMap(), _UnZipJs_globalIndex = new WeakMap(), _UnZipJs_localFiles = new WeakMap(), _UnZipJs_centralDirectories = new WeakMap(), _UnZipJs_endOfCentralDirectory = new WeakMap();
 
     exports.UnZipJs = UnZipJs;
 
