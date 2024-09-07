@@ -39,7 +39,7 @@ export class UnZipJs {
         }
     };
 
-    private async read(): Promise<void> {
+    read(): void {
         try {
             let indexList: Array<number> = [];
             while(!this.#endOfCentralDirectory){

@@ -130,41 +130,39 @@
         }
         ;
         read() {
-            return __awaiter(this, void 0, void 0, function* () {
-                try {
-                    let indexList = [];
-                    while (!__classPrivateFieldGet(this, _UnZipJs_endOfCentralDirectory, "f")) {
-                        const signature = __classPrivateFieldGet(this, _UnZipJs_dataview, "f").getUint32(__classPrivateFieldGet(this, _UnZipJs_globalIndex, "f"));
-                        if (signature === 0x04034b50) {
-                            const entry = this.readLocalFiles(__classPrivateFieldGet(this, _UnZipJs_globalIndex, "f"));
-                            entry.startsAt = __classPrivateFieldGet(this, _UnZipJs_globalIndex, "f") + 30 + entry.fileNameLength + entry.extraLength;
-                            entry.extract = this.extractZip.bind(this, entry);
-                            __classPrivateFieldGet(this, _UnZipJs_localFiles, "f").push(entry);
-                            indexList.push(__classPrivateFieldGet(this, _UnZipJs_globalIndex, "f"));
-                            __classPrivateFieldSet(this, _UnZipJs_globalIndex, 0, "f");
-                            for (const index of indexList) {
-                                if (index === indexList.length - 1) {
-                                    __classPrivateFieldSet(this, _UnZipJs_globalIndex, __classPrivateFieldGet(this, _UnZipJs_globalIndex, "f") + indexList[index], "f");
-                                }
+            try {
+                let indexList = [];
+                while (!__classPrivateFieldGet(this, _UnZipJs_endOfCentralDirectory, "f")) {
+                    const signature = __classPrivateFieldGet(this, _UnZipJs_dataview, "f").getUint32(__classPrivateFieldGet(this, _UnZipJs_globalIndex, "f"));
+                    if (signature === 0x04034b50) {
+                        const entry = this.readLocalFiles(__classPrivateFieldGet(this, _UnZipJs_globalIndex, "f"));
+                        entry.startsAt = __classPrivateFieldGet(this, _UnZipJs_globalIndex, "f") + 30 + entry.fileNameLength + entry.extraLength;
+                        entry.extract = this.extractZip.bind(this, entry);
+                        __classPrivateFieldGet(this, _UnZipJs_localFiles, "f").push(entry);
+                        indexList.push(__classPrivateFieldGet(this, _UnZipJs_globalIndex, "f"));
+                        __classPrivateFieldSet(this, _UnZipJs_globalIndex, 0, "f");
+                        for (const index of indexList) {
+                            if (index === indexList.length - 1) {
+                                __classPrivateFieldSet(this, _UnZipJs_globalIndex, __classPrivateFieldGet(this, _UnZipJs_globalIndex, "f") + indexList[index], "f");
                             }
                         }
-                        else if (signature === 0x02014b50) {
-                            const entry = this.readCentralDirectories(__classPrivateFieldGet(this, _UnZipJs_globalIndex, "f"));
-                            __classPrivateFieldGet(this, _UnZipJs_centralDirectories, "f").push(entry);
-                            __classPrivateFieldSet(this, _UnZipJs_globalIndex, __classPrivateFieldGet(this, _UnZipJs_globalIndex, "f") + (46 + entry.fileNameLength + entry.extraLength + entry.fileCommentLength), "f");
-                        }
-                        else if (signature === 0x06054b50) {
-                            __classPrivateFieldSet(this, _UnZipJs_endOfCentralDirectory, this.readEndOfCentralDirectory(__classPrivateFieldGet(this, _UnZipJs_globalIndex, "f")), "f");
-                        }
-                        else {
-                            break;
-                        }
+                    }
+                    else if (signature === 0x02014b50) {
+                        const entry = this.readCentralDirectories(__classPrivateFieldGet(this, _UnZipJs_globalIndex, "f"));
+                        __classPrivateFieldGet(this, _UnZipJs_centralDirectories, "f").push(entry);
+                        __classPrivateFieldSet(this, _UnZipJs_globalIndex, __classPrivateFieldGet(this, _UnZipJs_globalIndex, "f") + (46 + entry.fileNameLength + entry.extraLength + entry.fileCommentLength), "f");
+                    }
+                    else if (signature === 0x06054b50) {
+                        __classPrivateFieldSet(this, _UnZipJs_endOfCentralDirectory, this.readEndOfCentralDirectory(__classPrivateFieldGet(this, _UnZipJs_globalIndex, "f")), "f");
+                    }
+                    else {
+                        break;
                     }
                 }
-                catch (error) {
-                    console.error(error);
-                }
-            });
+            }
+            catch (error) {
+                console.error(error);
+            }
         }
         ;
         readLocalFiles(offset) {
